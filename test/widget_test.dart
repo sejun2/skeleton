@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:skeleton/main.dart';
+import 'package:skeleton/second_page.dart';
 
 void main() {
   late MaterialApp myHomePage;
@@ -50,5 +51,16 @@ void main() {
     // Verify that our counter has incremented.
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
+  });
+
+  testWidgets('When tap move button, then move to SecondPage', (widgetTester) async{
+    await widgetTester.pumpWidget(myHomePage);
+
+    await widgetTester.tap(find.byKey(const Key('button_go_to_second_page')));
+    await widgetTester.pumpAndSettle();
+
+    expect(find.byType(MyHomePage), findsNothing);
+    expect(find.byType(SecondPage), findsOneWidget);
+    expect(find.text('This is SecondPage'), findsOneWidget);
   });
 }
