@@ -10,9 +10,14 @@ class SecondPage extends StatefulWidget {
 class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
+    return Scaffold(
+      body: const Center(
         child: Text('This is SecondPage'),
+      ),
+      appBar: AppBar(
+        leading: IconButton(onPressed: (){
+          Navigator.of(context).pop();
+        }, icon: const Icon(key:Key('button_go_back') ,Icons.arrow_back_ios_new)),
       ),
     );
   }

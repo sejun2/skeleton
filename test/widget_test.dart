@@ -63,4 +63,23 @@ void main() {
     expect(find.byType(SecondPage), findsOneWidget);
     expect(find.text('This is SecondPage'), findsOneWidget);
   });
+
+  testWidgets('When tap back button on SecondPae, then go back to previous page', (widgetTester) async{
+    await widgetTester.pumpWidget(myHomePage);
+
+    await widgetTester.tap(find.byKey(const Key('button_go_to_second_page')));
+    await widgetTester.pumpAndSettle();
+
+    expect(find.byType(MyHomePage), findsNothing);
+    expect(find.byType(SecondPage), findsOneWidget);
+    expect(find.text('This is SecondPage'), findsOneWidget);
+
+    await widgetTester.tap(find.byKey(const Key('button_go_back')));
+    await widgetTester.pumpAndSettle();
+
+    expect(find.byType(SecondPage), findsNothing);
+    expect(find.byType(MyHomePage), findsOneWidget);
+
+
+  });
 }
