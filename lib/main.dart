@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:skeleton/second_page.dart';
 
-void main() {
+void main() async{
+  await WidgetsFlutterBinding.ensureInitialized();
+  print('run...');
+  //request permission
+  final req = await Permission.storage.request();
+  var status = await Permission.storage.status;
+  print('reqpermission : ${req.isGranted}');
+  print('status : ${status.isGranted}') ;
+  print('isGranted : ${status.isGranted}');
+
+
   runApp(const MyApp());
 }
 
@@ -37,6 +48,11 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _counter++;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override

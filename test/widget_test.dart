@@ -1,10 +1,3 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -15,7 +8,7 @@ void main() {
   late MaterialApp myHomePage;
 
   setUp(() {
-    myHomePage = MaterialApp(home: MyHomePage(title: 'title',));
+    myHomePage = const MaterialApp(home: MyHomePage(title: 'title',));
   });
   testWidgets('UI validation', (widgetTester) async{
 
@@ -64,7 +57,7 @@ void main() {
     expect(find.text('This is SecondPage'), findsOneWidget);
   });
 
-  testWidgets('When tap back button on SecondPae, then go back to previous page', (widgetTester) async{
+  testWidgets('When tap back button on SecondPage, then go back to previous page', (widgetTester) async{
     await widgetTester.pumpWidget(myHomePage);
 
     await widgetTester.tap(find.byKey(const Key('button_go_to_second_page')));
@@ -79,7 +72,6 @@ void main() {
 
     expect(find.byType(SecondPage), findsNothing);
     expect(find.byType(MyHomePage), findsOneWidget);
-
-
   });
+
 }
